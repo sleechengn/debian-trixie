@@ -21,4 +21,4 @@ services:
       - TZ=Asia/Shanghai
     networks:
       lan13:
-        ipv4_address: 192.168.13.63
+        ipv4_address: 192.168.13.65
