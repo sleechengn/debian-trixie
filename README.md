@@ -20,10 +20,10 @@ networks:
         - subnet: "192.168.13.0/24"
           gateway: "192.168.13.1"
 services:
-  debian-bookworm:
-    container_name: "debian-bookworm"
-    hostname: "debian-bookworm"
-    image: "sleechengn/debian:bookworm"
+  debian-trixie:
+    container_name: "debian-trixie"
+    hostname: "debian-trixie"
+    image: "sleechengn/debian:trixie"
     restart: unless-stopped
     environment:
       - ROOT_PASSWORD=123456
