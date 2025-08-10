@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+set -e
+
+export DOCKER_BUILDKIT=1
+
+rm -rf $(dirname $0)/Dockerfile.run.build
+cp $(dirname $0)/Dockerfile $(dirname $0)/Dockerfile.run.build
+
+sed -i '1i\# syntax=docker/dockerfile:1.3' Dockerfile.run.build
+
+sed -i "/^#APT_UBUNTU_JAMMY.*/i\RUN apt update" Dockerfile.run.build
+sed -i "/^#APT_UBUNTU_JAMMY.*/i\RUN apt install -y ca-certificates" Dockerfile.run.build
+sed -i '/^#APT_UBUNTU_JAMMY.*/i\RUN mv /etc/apt/sources.list /etc/apt/sources.list.back' Dockerfile.run.build
+sed -i '/^#APT_UBUNTU_JAMMY.*/i\RUN echo "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse" >> /etc/apt/sources.list' Dockerfile.run.build
+sed -i '/^#APT_UBUNTU_JAMMY.*/i\RUN echo "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list' Dockerfile.run.build
+sed -i '/^#APT_UBUNTU_JAMMY.*/i\RUN echo "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse" >> /etc/apt/sources.list' Dockerfile.run.build
+sed -i '/^#APT_UBUNTU_JAMMY.*/i\RUN echo "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse" >> /etc/apt/sources.list' Dockerfile.run.build
+sed -i '/^#APT_UBUNTU_JAMMY.*/i\RUN apt update' Dockerfile.run.build
+
+time ./build.sh 192.168.13.73:5000/sleechengn/debian:trixie
+time docker push 192.168.13.73:5000/sleechengn/debian:trixie
+rm -rf $(dirname $0)/Dockerfile.run.build
