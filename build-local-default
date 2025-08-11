@@ -19,4 +19,5 @@ sed -i '/^#APT_UBUNTU_JAMMY.*/i\RUN apt update' Dockerfile.run.build
 
 time ./build.sh 192.168.13.73:5000/sleechengn/debian:trixie
 time docker push 192.168.13.73:5000/sleechengn/debian:trixie
+./build.sh sleechengn/debian:trixie
 rm -rf $(dirname $0)/Dockerfile.run.build

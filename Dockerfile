@@ -1,4 +1,4 @@
-from debian:trixie-20250721
+from debian:trixie
 
 run apt update \
 	&& apt -y install openssh-server nano unzip wget curl psmisc net-tools aria2 \

@@ -3,7 +3,7 @@ networks:
     name: lan13
     driver: macvlan
     driver_opts:
-      parent: eth1
+      parent: lan2
     ipam:
       config:
         - subnet: "192.168.13.0/24"

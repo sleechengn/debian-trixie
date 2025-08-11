@@ -12,6 +12,6 @@ else
 	if [ $IMAGE_TAG ]; then
                 docker build $(dirname $0) --file Dockerfile -t $IMAGE_TAG
         else
-                docker --debug build $(dirname $0) --file Dockerfile -t sleechengn/ubuntu:trixie
+                docker --debug build $(dirname $0) --file Dockerfile -t sleechengn/debian:trixie
 	fi
 fi
