@@ -24,7 +24,7 @@ run mkdir /opt/filebrowser \
 
 run rm -rf /etc/nginx/sites-enabled/default
 add ./NGINX /etc/nginx/sites-enabled/
-
+run sed -i "s/# alias/alias/g" /root/.bashrc
 env ROOT_PASSWORD=
 copy ./docker-entrypoint.sh /
 run chmod +x /docker-entrypoint.sh && chmod +x /usr/bin/ttyd
