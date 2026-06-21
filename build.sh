@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 if [ -e "$(dirname $0)/Dockerfile.run.build" ]; then
 	IMAGE_TAG=$1

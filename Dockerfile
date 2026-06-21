@@ -1,7 +1,7 @@
 from debian:trixie
 
 run apt update \
-	&& apt -y install openssh-server nano unzip wget curl psmisc net-tools aria2 nginx lrzsz tmux \
+	&& apt -y install openssh-server nano unzip wget curl psmisc net-tools aria2 nginx lrzsz tmux fish \
 	&& sed -i 's/.*PermitRootLogin.*/PermitRootLogin yes/g' /etc/ssh/sshd_config \
 	&& mkdir -p /run/sshd \
 	&& chmod -R 700 /run/sshd \
@@ -28,7 +28,7 @@ run mkdir /opt/filebrowser \
         && ln -s $(pwd)/filebrowser /usr/bin/filebrowser
 
 #trzsz
-RUN set -e \                                                                                                                                                                                                                                                                 
+run set -e \                                                                                                                                                                                                                                                                 
         && mkdir /opt/trzsz && cd /opt/trzsz \                     
         && DOWNLOAD=$(curl -s https://api.github.com/repos/trzsz/trzsz-go/releases/latest | grep browser_download_url |grep linux_x86_64|grep tar| cut -d'"' -f4) \
         && aria2c -x 10 -j 10 -k 1m $DOWNLOAD -o bin.tar.gz \
