@@ -19,7 +19,7 @@ set -g default-command fish
 EOF
 tmux source ~/.tmux.conf
 fi
-if [ ! -e "/usr/bin/t" ]; then
+if [ ! -e "/usr/bin/t" ] && [ $(id -u $(whoami)) -eq 0 ] ; then
 cat > /usr/bin/t <<EOF
 #!/usr/bin/env bash
 if [ "\$(tmux ls|grep '^default.*')" ]; then
