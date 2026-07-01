@@ -19,6 +19,12 @@ sed -i '/# RUN LINE/i\run apt install -y apt-transport-https ca-certificates' Do
 sed -i '/# RUN LINE/i\run sed -i "s,http://deb.debian.org/,https://mirrors.tuna.tsinghua.edu.cn/,g" /etc/apt/sources.list.d/debian.sources' Dockerfile.run.build
 sed -i '/# RUN LINE/i\run apt update' Dockerfile.run.build
 
+if [ $(arch) == "arm64" ]; then
+    sed -i "s/grep ttyd.x86_64/grep ttyd.aarch64/g" Dockerfile.run.build
+    sed -i "s/grep amd64/grep arm64/g" Dockerfile.run.build
+    sed -i "s/grep linux_x86_64/grep linux_aarch64/g" Dockerfile.run.build
+fi
+
 time ./build.sh 192.168.13.73:5000/sleechengn/debian:trixie
 time docker push 192.168.13.73:5000/sleechengn/debian:trixie
 ./build.sh sleechengn/debian:trixie

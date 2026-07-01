@@ -22,9 +22,9 @@ run set -e \
 run mkdir /opt/filebrowser \                                                                                                                                                                                                                                                 
         && cd /opt/filebrowser\                                                                                                                                                                                                                                              
         && DOWNLOAD=$(curl -s https://api.github.com/repos/filebrowser/filebrowser/releases/latest | grep browser_download_url |grep linux|grep amd64| grep -v rocm| cut -d'"' -f4) \                                                                                        
-        && aria2c -x 10 -j 10 -k 1M $DOWNLOAD -o linux-amd64-filebrowser.tar.gz \                                                                                                                                                                                            
-        && tar -zxvf linux-amd64-filebrowser.tar.gz \                                                                                                                                                                                                                        
-        && rm -rf linux-amd64-filebrowser.tar.gz \                                                                                                                                                                                                                           
+        && aria2c -x 10 -j 10 -k 1M $DOWNLOAD -o linux-filebrowser.tar.gz \                                                                                                                                                                                            
+        && tar -zxvf linux-filebrowser.tar.gz \                                                                                                                                                                                                                        
+        && rm -rf linux-filebrowser.tar.gz \                                                                                                                                                                                                                           
         && ln -s $(pwd)/filebrowser /usr/bin/filebrowser
 
 #trzsz
