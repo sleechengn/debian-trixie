@@ -15,8 +15,8 @@ copy ./installer /opt/installer
 #ttyd
 run set -e \
        && DOWNLOAD=$(curl -s https://api.github.com/repos/tsl0922/ttyd/releases/latest | grep browser_download_url |grep ttyd.x86_64| cut -d'"' -f4) \
-       && aria2c -x 10 -j 10 -k 1m $DOWNLOAD -o /usr/bin/ttyd.x86_64 \
-       && chmod +x /usr/bin/ttyd.x86_64
+       && aria2c -x 10 -j 10 -k 1m $DOWNLOAD -o /usr/bin/ttyd \
+       && chmod +x /usr/bin/ttyd
 
 # filebrowser                                                                                                                                                                                                                                                                
 run mkdir /opt/filebrowser \                                                                                                                                                                                                                                                 
