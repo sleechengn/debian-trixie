@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
+
+if [ ! -e "/root_passwd_init" ]; then
+    if [ "$ROOT_PASSWORD" ]; then
+        echo "root:$ROOT_PASSWORD" | chpasswd
+    fi
+    touch /root_passwd_init
+fi
+
 for file in /opt/installer/*.sh
 do
     if test -f $file
